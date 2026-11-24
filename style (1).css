@@ -1,0 +1,141 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 30px 15px;
+    font-family: Arial, sans-serif;
+    background: #f5f5f5;
+    color: #222;
+}
+
+.container {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+h1 {
+    margin: 0 0 35px;
+    text-align: center;
+    font-size: 32px;
+}
+
+.gallery {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.gallery-window {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+}
+
+.gallery-track {
+    display: flex;
+    gap: 16px;
+    transition: transform 0.4s ease;
+    will-change: transform;
+}
+
+.gallery-item {
+    flex: 0 0 calc((100% - 32px) / 3);
+    min-width: 0;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.gallery-item img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+}
+
+.arrow {
+    flex: 0 0 42px;
+    width: 42px;
+    height: 42px;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background: #3979bd;
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.arrow:hover:not(:disabled) {
+    background: #24558b;
+}
+
+.arrow:disabled {
+    opacity: 0.35;
+    cursor: default;
+}
+
+.pager {
+    margin-top: 25px;
+    text-align: center;
+}
+
+.page-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+}
+
+.page-button {
+    width: 34px;
+    height: 34px;
+    border: 1px solid #3979bd;
+    border-radius: 50%;
+    background: #fff;
+    color: #3979bd;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.page-button:hover,
+.page-button.active {
+    background: #3979bd;
+    color: #fff;
+}
+
+#pageInfo {
+    margin-top: 12px;
+    font-size: 16px;
+}
+
+@media (max-width: 600px) {
+    body {
+        padding: 20px 10px;
+    }
+
+    h1 {
+        margin-bottom: 25px;
+        font-size: 25px;
+    }
+
+    .gallery {
+        gap: 8px;
+    }
+
+    .arrow {
+        flex-basis: 34px;
+        width: 34px;
+        height: 34px;
+        font-size: 16px;
+    }
+
+    .gallery-track {
+        gap: 0;
+    }
+
+    .gallery-item {
+        flex-basis: 100%;
+    }
+}

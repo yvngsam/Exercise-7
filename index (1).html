@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Лабораторная работа №7 — Галерея</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="container">
+        <h1>Галерея изображений</h1>
+
+        <section class="gallery" aria-label="Галерея изображений">
+            <button class="arrow" id="prevButton" type="button"
+                    aria-label="Предыдущая страница" disabled>&#10094;</button>
+
+            <div class="gallery-window" id="galleryWindow">
+                <div class="gallery-track" id="galleryTrack">
+                    <div class="gallery-item"><img src="images/photo1.svg" alt="Пейзаж 1"></div>
+                    <div class="gallery-item"><img src="images/photo2.svg" alt="Пейзаж 2"></div>
+                    <div class="gallery-item"><img src="images/photo3.svg" alt="Пейзаж 3"></div>
+                    <div class="gallery-item"><img src="images/photo4.svg" alt="Пейзаж 4"></div>
+                    <div class="gallery-item"><img src="images/photo5.svg" alt="Пейзаж 5"></div>
+                    <div class="gallery-item"><img src="images/photo6.svg" alt="Пейзаж 6"></div>
+                    <div class="gallery-item"><img src="images/photo7.svg" alt="Пейзаж 7"></div>
+                    <div class="gallery-item"><img src="images/photo8.svg" alt="Пейзаж 8"></div>
+                </div>
+            </div>
+
+            <button class="arrow" id="nextButton" type="button"
+                    aria-label="Следующая страница">&#10095;</button>
+        </section>
+
+        <nav class="pager" aria-label="Страницы галереи">
+            <div class="page-buttons" id="pageButtons"></div>
+            <p id="pageInfo" aria-live="polite">Страница 1 из 3</p>
+        </nav>
+    </main>
+
+    <script>
+        const galleryWindow = document.getElementById('galleryWindow');
+        const galleryTrack = document.getElementById('galleryTrack');
+        const galleryItems = Array.from(document.querySelectorAll('.gallery-item'));
+        const prevButton = document.getElementById('prevButton');
+        const nextButton = document.getElementById('nextButton');
+        const pageButtons = document.getElementById('pageButtons');
+        const pageInfo = document.getElementById('pageInfo');
+
+        let currentPage = 0;
+        let itemsPerPage = getItemsPerPage();
+
+        function getItemsPerPage() {
+            return window.matchMedia('(max-width: 600px)').matches ? 1 : 3;
+        }
+
+        function getPageCount() {
+            return Math.ceil(galleryItems.length / itemsPerPage);
+        }
+
+        function updateGallery() {
+            const pageCount = getPageCount();
+            const offset = currentPage * galleryWindow.clientWidth;
+
+            galleryTrack.style.transform = `translateX(-${offset}px)`;
+            pageInfo.textContent = `Страница ${currentPage + 1} из ${pageCount}`;
+
+            prevButton.disabled = currentPage === 0;
+            nextButton.disabled = currentPage === pageCount - 1;
+
+            pageButtons.replaceChildren();
+
+            for (let page = 0; page < pageCount; page++) {
+                const button = document.createElement('button');
+                button.type = 'button';
+                button.className = 'page-button';
+                button.textContent = String(page + 1);
+                button.setAttribute('aria-label', `Перейти на страницу ${page + 1}`);
+
+                if (page === currentPage) {
+                    button.classList.add('active');
+                    button.setAttribute('aria-current', 'page');
+                }
+
+                button.addEventListener('click', () => {
+                    currentPage = page;
+                    updateGallery();
+                });
+
+                pageButtons.appendChild(button);
+            }
+        }
+
+        prevButton.addEventListener('click', () => {
+            if (currentPage > 0) {
+                currentPage--;
+                updateGallery();
+            }
+        });
+
+        nextButton.addEventListener('click', () => {
+            if (currentPage < getPageCount() - 1) {
+                currentPage++;
+                updateGallery();
+            }
+        });
+
+        window.addEventListener('resize', () => {
+            const newItemsPerPage = getItemsPerPage();
+
+            if (newItemsPerPage !== itemsPerPage) {
+                itemsPerPage = newItemsPerPage;
+                currentPage = 0;
+            }
+
+            updateGallery();
+        });
+
+        updateGallery();
+    </script>
+</body>
+</html>
