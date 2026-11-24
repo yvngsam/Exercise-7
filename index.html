@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Галерея изображений с горизонтальным слайдером.">
+    <title>Галерея изображений</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <main class="page">
+        <h1>Галерея изображений</h1>
+
+        <section class="gallery" aria-label="Галерея изображений">
+            <button class="gallery__arrow gallery__arrow--prev"
+                    type="button" aria-label="Предыдущая страница">
+                &#10094;
+            </button>
+
+            <div class="gallery__window">
+                <div class="gallery__track">
+                    <figure class="gallery__item">
+                        <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=85"
+                             alt="Горный пейзаж на закате">
+                    </figure>
+                    <figure class="gallery__item">
+                        <img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=900&q=85"
+                             alt="Озеро среди гор">
+                    </figure>
+                    <figure class="gallery__item">
+                        <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=900&q=85"
+                             alt="Горное озеро и лес">
+                    </figure>
+                    <figure class="gallery__item">
+                        <img src="https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?auto=format&fit=crop&w=900&q=85"
+                             alt="Рассвет над природным пейзажем">
+                    </figure>
+                    <figure class="gallery__item">
+                        <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=900&q=85"
+                             alt="Солнечный свет в лесу">
+                    </figure>
+                    <figure class="gallery__item">
+                        <img src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=900&q=85"
+                             alt="Пейзаж с горами и облаками">
+                    </figure>
+                    <figure class="gallery__item">
+                        <img src="https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=900&q=85"
+                             alt="Морская волна">
+                    </figure>
+                    <figure class="gallery__item">
+                        <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=900&q=85"
+                             alt="Природа и горный пейзаж">
+                    </figure>
+                </div>
+            </div>
+
+            <button class="gallery__arrow gallery__arrow--next"
+                    type="button" aria-label="Следующая страница">
+                &#10095;
+            </button>
+        </section>
+
+        <nav class="gallery__pagination" aria-label="Страницы галереи"></nav>
+        <p class="gallery__status" aria-live="polite"></p>
+    </main>
+</body>
+</html>
